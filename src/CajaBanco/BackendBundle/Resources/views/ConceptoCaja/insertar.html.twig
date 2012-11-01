@@ -1,0 +1,34 @@
+{% extends 'CajaBancoBackendBundle::base.html.twig' %}
+
+{% block content %} 
+    <h3 class="content_title">Conceptos de Caja</h3> 
+
+    <fieldset>
+    <legend>Nuevo</legend>
+    <form action="{{ path('conceptoCaja_insertar') }}" method="post" {{ form_enctype(form) }} class="inline_form">
+            {{ form_errors(form) }}   
+
+            {{ form_row(form.descripcion) }}   
+            {{ form_row(form.tipoMovimiento, {'label': 'Tipo de Movimiento' }) }} 
+            {{ form_row(form.cuenta) }}    
+            {{ form_row(form.contracuenta) }}
+
+            {{ form_rest(form) }}         
+            <div>
+                <button  type="submit" class="medium blue pill">Insertar</button>        
+                <a href="{{ path('index') }}">
+                    <span class="icon large red tooltip" title="Cancelar" style="padding:5px 0px 0px 10px;" data-icon="X"></span>
+                </a>
+            </div>
+        </form>
+    </fieldset>
+    {# Se renderiza el listado llamando al controlador #}    
+    {% render "CajaBancoBackendBundle:ConceptoCaja:listar"%}
+   
+{% endblock content%}
+    
+{% block javascripts %}
+    {{parent()}} 
+    
+{% endblock javascripts%}
+

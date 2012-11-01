@@ -1,6 +1,36 @@
 index:
     pattern:  /backend
     defaults: { _controller: CajaBancoBackendBundle:Page:index }    
+    
+conceptoCaja_insertar:
+    pattern: /backend/conceptoCaja/insertar
+    defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:insertar }
+    requirements:
+        _method:  GET|POST
+
+conceptoCaja_editar:
+    pattern: /backend/conceptoCaja/editar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:editar }
+    requirements:
+        _method:  GET|POST
+        
+conceptoCaja_borrar:
+    pattern:  /backend/conceptoCaja/borrar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:borrar }         
+ 
+conceptoCaja_listar:
+    pattern: /backend/conceptoCaja/listar
+    defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:listar }    
+    
+conceptoCaja_verTodos:
+    pattern:  /backend/conceptoCaja/verTodos
+    defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:verTodos } 
+    
+caja_insertar:
+    pattern: /backend/caja/insertar
+    defaults: { _controller: CajaBancoBackendBundle:Caja:insertar }
+    requirements:
+        _method:  GET|POST
 
 
  

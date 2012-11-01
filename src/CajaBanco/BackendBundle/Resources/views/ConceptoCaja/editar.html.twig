@@ -1,0 +1,33 @@
+{% extends 'CajaBancoBackendBundle::base.html.twig' %}
+
+{% block content %} 
+     <h3 class="content_title">Conceptos de Caja</h3>
+     
+     <fieldset>
+    <legend>Editar</legend>
+    <form action="{{path('conceptoCaja_editar',{'id':conceptoCaja.id})}}" method="post" {{ form_enctype(edit_form) }} class="inline_form">
+            {{ form_errors(edit_form) }}   
+
+            {{ form_row(edit_form.descripcion) }}   
+            {{ form_row(edit_form.tipoMovimiento, {'label': 'Tipo de Movimiento' }) }} 
+            {{ form_row(edit_form.cuenta) }}    
+            {{ form_row(edit_form.contracuenta) }}
+
+            {{ form_rest(edit_form) }}         
+            <div>
+                <button  type="submit" class="medium blue pill">Guardar</button>        
+                <a href="{{ path('conceptoCaja_insertar') }}">
+                    <span class="icon large red tooltip" title="Cancelar" style="padding:5px 0px 0px 10px;" data-icon="X"></span>
+                </a>
+            </div>
+        </form>
+    </fieldset>
+    {# Se renderiza el listado llamando al controlador #}   
+    {% render "CajaBancoBackendBundle:ConceptoCaja:listar"%}
+   
+{% endblock content%}
+    
+{% block javascripts %}
+    {{parent()}} 
+    
+{% endblock javascripts %}
