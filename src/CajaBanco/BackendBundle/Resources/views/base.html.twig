@@ -1,0 +1,131 @@
+{# Plantilla Principal#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Box&Bank{% block title %} {% endblock %}</title>
+        
+        {% block stylesheets %}    
+            <link href="{{ asset('css/base.css') }}" type="text/css" rel="stylesheet" /> 
+            <link href="{{ asset('css/abm.css') }}" type="text/css" rel="stylesheet" /> 
+            {# KICKSTART #}
+            <link href="{{ asset('kickstart/css/kickstart.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('kickstart/css/pretiffy.css') }}" type="text/css" rel="stylesheet" />
+            {# JTABLE #}
+            <link href="{{ asset('JTable/css/demo_table_jui.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('JTable/themes/smoothness/jquery-ui-1.8.4.custom.css') }}" type="text/css" rel="stylesheet" /> 
+            {# Otro tema de tabla
+            <link href="{{ asset('JTable/css/jquery.dataTables_themeroller.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('JTable/themes/ui-lightness/jquery-ui-1.8.4.custom.css') }}" type="text/css" rel="stylesheet" /> 
+            #}
+            {% endblock %}
+        
+        {% block javascripts %}   
+            {# KICKSTART #}
+            <script type="text/javascript" src="{{ asset('js/jquery-1.8_0.js') }}"></script> 
+            <script src="{{ asset('kickstart/js/kickstart.js') }}"></script> 
+            {# JTABLE #}
+            <script type="text/javascript" src="{{ asset('js/jquery-1.8_0.js') }}"></script> 
+            <script src="{{ asset('JTable/js/jquery.dataTables.js') }}"></script>     
+        {% endblock javascripts %}   
+        {# ICONO #}
+        <link rel="shortcut icon" href="{{ asset('Bank.ico') }}" />
+    </head>
+    <body>        
+        <section id="wrapper">      {# Envoltorio principal #}
+            <header>                {# Cabecera #}               
+                <hgroup>             {#Contenedor de titulo #}
+                   <h3>Box & Bank</h3>
+                   <div><a href="#"><span class="icon large blue" data-icon="u"></span></a></div>
+                </hgroup>                    
+                <nav id="menu">     {#Contenedor de menu #}
+                    <ul class="menu">
+                        <li><a href="{{ path('index') }}"><span class="icon darkgray" data-icon="I"></span>Inicio</a></li>
+                        <li><a href="">Caja</a>
+                        <ul>
+                            <li><a href="">Abrir</a></li>
+                            <li><a href="">Cerrar</a></li> 
+                            <li class="divider"><a href="">Movimientos</a>  
+                            <ul>
+                                <li><a href="">Registrar</a></li>
+                                <li><a href="">Ver Todos</a>                                           
+                            </ul>    
+                            </li>                            
+                        </ul>
+                        </li>
+                        <li><a href="">Banco</a>
+                        <ul>
+                            <li><a href="">Movimientos</a>
+                            <ul>
+                                <li><a href="">Registrar</a></li>
+                                <li><a href="">Ver Todos</a>                                           
+                            </ul>
+                            </li>                            
+                            <li class="divider"><a href="">Depositos</a>  
+                            <ul>
+                                <li><a href="">Cargar Boletas</a></li>
+                                <li><a href="">Ver Boletas</a>                                           
+                            </ul>    
+                            </li>                           
+                        </ul>    
+                        </li>                   
+                        <li><a href="">Ver</a>
+                        <ul>
+                            <li><a href="">Cajas</a></li>
+                            <li><a href="">Bancos</a></li>
+                            <li><a href="">Cuentas Bancarias</a>
+                            <li class="divider"><a href="">Chequeras</a></li> 
+                            <li><a href="">Cheques</a>
+                            <ul>
+                                <li><a href="">Recibidos</a></li>
+                                <li><a href="">Propios</a>                                           
+                            </ul>
+                            </li>
+                            <li class="divider"><a href="">Conceptos</a>
+                            <ul>
+                                <li><a href="">de Caja</a></li>
+                                <li><a href="">de Banco</a>                                           
+                            </ul>
+                            </li>                            
+                            <li><a href="">Libro</a>  
+                            <ul>
+                                <li><a href="">de Caja</a></li>
+                                <li><a href="">de Banco</a>                                           
+                            </ul>    
+                            </li>
+                            <li class="divider"><a href="">Auditoria</a></li>
+                        </ul> 
+                        <li><a href="">Administrar</a>
+                        <ul>
+                            <li><a href="">Cajas</a></li>
+                            <li><a href="">Bancos</a></li>
+                            <li><a href="">Cuentas Bancarias</a>
+                            <li class="divider"><a href="">Chequeras</a></li> 
+                            <li class="divider"><a href="">Conceptos</a>
+                            <ul>
+                                <li><a href="">de Caja</a></li>
+                                <li><a href="">de Banco</a>                                           
+                            </ul>
+                            </li>                            
+                            <li class="divider"><a href="">Usuarios</a></li>  
+                             <li><a href="">Roles</a></li>                                
+                        </ul>        
+                        </li>                        
+                    </ul>
+                </nav>         
+            </header> 
+                
+            <section class="content">  {# Contenedor principal #}
+                {% block content %}
+                   
+                {% endblock content%}
+            </section>        
+                         
+            <footer>
+                {% block footer %}      {# Contenedor pie #}  
+                    Sistema de Caja y Banco - FII UNI Sistema de Gestion 2012
+                {% endblock %}
+            </footer>
+        </section>      
+    </body>
+</html>

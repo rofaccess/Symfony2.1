@@ -1,0 +1,7 @@
+parameters:
+#    caja_banco_backend.example.class: CajaBanco\BackendBundle\Example
+
+services:
+#    caja_banco_backend.example:
+#        class: %caja_banco_backend.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
