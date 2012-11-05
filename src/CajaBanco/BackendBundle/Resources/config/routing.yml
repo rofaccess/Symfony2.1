@@ -32,6 +32,28 @@ caja_insertar:
     requirements:
         _method:  GET|POST
 
+caja_insertar:
+    pattern: /backend/caja/insertar
+    defaults: { _controller: CajaBancoBackendBundle:Caja:insertar }
+    requirements:
+        _method:  GET|POST
 
+caja_editar:
+    pattern: /backend/caja/editar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:Caja:editar }
+    requirements:
+        _method:  GET|POST
+        
+caja_borrar:
+    pattern:  /backend/caja/borrar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:Caja:borrar }         
+ 
+caja_listar:
+    pattern: /backend/caja/listar
+    defaults: { _controller: CajaBancoBackendBundle:Caja:listar }    
+    
+caja_verTodos:
+    pattern:  /backend/caja/verTodos
+    defaults: { _controller: CajaBancoBackendBundle:Caja:verTodos } 
  
     

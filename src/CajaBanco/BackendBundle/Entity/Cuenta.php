@@ -48,7 +48,7 @@ class Cuenta
     /**
      * @var string $asentable
      *
-     * @ORM\Column(name="asentable", type="string", length=1, nullable=true)
+     * @ORM\Column(name="asentable", type="string", length=2, nullable=true)
      */
     private $asentable;       
 

@@ -1,0 +1,50 @@
+{% block content %} 
+    <div class="ex_highlight_row">
+    <table class="display content_table" id="listado">
+	<thead>
+            <tr>
+                <th>N° de Caja</th>
+		<th>Denominacion</th>
+                <th>Fecha de Creacion</th>
+		<th>Esta Abierto?</th>
+                <th>Acciones</th>                        
+            </tr>
+	</thead>
+	<tbody>
+            {% for caja in cajas %}
+            <tr>
+                <td>{{ caja.nCaja }}</td>
+                <td>{{ caja.denominacion }}</td>
+                <td>{{ caja.fCreacion|	date("m/d/Y") }}</td>
+                <td>{{ caja.abierto }}</td> 
+                <td class="center">
+                    <a href="{{	path('caja_editar',{'id':caja.id})}}"><span class="icon gray tooltip-left" title="Editar" data-icon="7"></span></a> 
+                    <a style="padding-left:20px;"class="borrar" href="{{path('caja_borrar',{'id':caja.id})}}"><span class="icon gray tooltip-right" title="Borrar" data-icon="T"></span></a>
+                </td>
+            </tr>
+            {% endfor %}		
+	</tbody>	
+    </table>
+    </div>        
+{% endblock content %}
+
+{% block javascripts %}   
+    <script type="text/javascript" charset="utf-8">          
+        $(document).ready( function () {               
+            {# Se establece el formato de la tabla #} 
+            var oTable = $('#listado').dataTable( {
+		"sDom": 'R<"H"lfr>t<"F"ip>',
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers",               
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                "oLanguage": { "sUrl": "{{ asset('JTable/Lenguajes/spanish.txt') }}" }  
+            } );
+            
+            {# Muestra un anuncio de borrado #}
+            $("a.borrar").click(function(evento){
+                alert("Concepto de Caja Borrado");                
+            });
+	});
+    </script>  
+{% endblock javascripts %}
+

@@ -1,21 +1,23 @@
 {% extends 'CajaBancoBackendBundle::base.html.twig' %}
+
 {% block stylesheets %}  
-    {{parent()}}    
+    {{parent()}} 
+    <link href="{{ asset('css/abm_caja.css') }}" type="text/css" rel="stylesheet" /> 
     <link href="{{ asset('validationEngine/css/validationEngine.jquery.css') }}" type="text/css" rel="stylesheet" /> 
     
 {% endblock %}
+    
 {% block content %} 
-    <h3 class="content_title">Conceptos de Caja</h3> 
+    <h3 class="content_title">Cajas</h3> 
 
     <fieldset>
     <legend>Nuevo</legend>
-    <form id = "formID" action="{{ path('conceptoCaja_insertar') }}" method="post" {{ form_enctype(form) }} class="inline_form">
+    <form id="formID" action="{{ path('caja_insertar') }}" method="post" {{ form_enctype(form) }} class="inline_form">
             {{ form_errors(form) }}   
 
-            {{ form_row(form.descripcion) }}   
-            {{ form_row(form.tipoMovimiento, {'label': 'Tipo de Movimiento' }) }} 
-            {{ form_row(form.cuenta) }}    
-            {{ form_row(form.contracuenta) }}
+            {{ form_row(form.nCaja, {'label': 'N° de Caja' }) }} 
+            {{ form_row(form.denominacion)}} 
+            {{ form_row(form.fCreacion, {'label': 'Fecha de Creacion' })}}           
 
             {{ form_rest(form) }}         
             <div>
@@ -26,8 +28,8 @@
             </div>
         </form>
     </fieldset>
-    {# Se renderiza el listado llamando al controlador #}    
-    {% render "CajaBancoBackendBundle:ConceptoCaja:listar"%}
+    {# Se renderiza el listado llamando al controlador #}   
+    {% render "CajaBancoBackendBundle:Caja:listar"%} 
    
 {% endblock content%}
     
@@ -37,10 +39,14 @@
     <script src="{{ asset('validationEngine/js/languages/jquery.validationEngine-es.js') }}"></script> 
     <script>    
         jQuery(document).ready(function(){
-            $("#conceptoCaja_form_descripcion").addClass("validate[required]");
+            $("#caja_form_nCaja").addClass("validate[required,custom[onlyNumberSp]]");
+            //$("#caja_form_fCreacion").addClass("validate[required,custom[date]]"); 
+            $("#caja_form_denominacion").addClass("validate[required]");
+            //$("#caja_form_fCreacion").attr("disabled","disabled");
             // binds form submission and fields to the validation engine
             jQuery("#formID").validationEngine('attach');
 	});
     </script>  
+        
 {% endblock javascripts%}
 
