@@ -72,4 +72,28 @@ banco_listar:
     
 banco_verTodos:
     pattern:  /backend/banco/verTodos
-    defaults: { _controller: CajaBancoBackendBundle:Banco:verTodos }     
+    defaults: { _controller: CajaBancoBackendBundle:Banco:verTodos }   
+    
+ctabancaria_insertar:
+    pattern: /backend/ctabancaria/insertar
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:insertar }
+    requirements:
+        _method:  GET|POST
+
+ctabancaria_editar:
+    pattern: /backend/ctabancaria/editar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:editar }
+    requirements:
+        _method:  GET|POST
+        
+ctabancaria_borrar:
+    pattern:  /backend/ctabancaria/borrar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:borrar }         
+ 
+ctabancaria_listar:
+    pattern: /backend/ctabancaria/listar
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:listar }    
+    
+ctabancaria_verTodos:
+    pattern:  /backend/ctabancaria/verTodos
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:verTodos }     

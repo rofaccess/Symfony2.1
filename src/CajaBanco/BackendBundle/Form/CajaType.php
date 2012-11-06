@@ -10,10 +10,7 @@ class CajaType extends AbstractType
     {    
         $builder->add('nCaja')
                 ->add('denominacion')
-                ->add('fCreacion', 'datetime', array(
-                    'widget' => 'single_text',
-                    
-                    ))
+                ->add('fCreacion', 'datetime', array('widget' => 'single_text',))
         ;
     }    
     public function getName()

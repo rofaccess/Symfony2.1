@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ caja.nCaja }}</td>
                 <td>{{ caja.denominacion }}</td>
-                <td>{{ caja.fCreacion|	date("m/d/Y") }}</td>
+                <td>{{ caja.fCreacion|	date("d/m/Y") }}</td>
                 <td>{{ caja.abierto }}</td> 
                 <td class="center">
                     <a href="{{	path('caja_editar',{'id':caja.id})}}"><span class="icon gray tooltip-left" title="Editar" data-icon="7"></span></a> 

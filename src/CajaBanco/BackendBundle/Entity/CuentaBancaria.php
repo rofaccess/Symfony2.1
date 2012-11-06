@@ -16,12 +16,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 class CuentaBancaria
 {    
     /**
-     * @var integer $n_cuenta
+     * @var integer $nCuenta
      *
      * @ORM\Column(name="n_cuenta", type="integer", nullable=false)
      * @ORM\Id
      */
-    private $nCuenta;
+    public $nCuenta;
 
     /**     
      * @ORM\ManyToOne(targetEntity="Banco", inversedBy="cuentasBancarias")
@@ -58,7 +58,7 @@ class CuentaBancaria
     private $fCancelacion;
     
     /**
-     * Get id
+     * Get nCuenta
      *
      * @return integer 
      */

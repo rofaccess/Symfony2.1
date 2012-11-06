@@ -1,24 +1,28 @@
 {% extends 'CajaBancoBackendBundle::base.html.twig' %}
 
 {% block content %} 
-    <h3 class="content_title left">Cajas</h3>
+    <h3 class="content_title left">Cuentas Bancarias</h3>
     <div class="ex_highlight_row">
     <table class="display content_table" id="listado">
 	<thead>
             <tr>
-                <th>N° de Caja</th>
-		<th>Denominacion</th>
-                <th>Fecha de Creacion</th>
-		<th>Esta Abierto?</th>                                      
+                <th>N° de Cuenta</th>
+		<th>Banco</th>
+                <th>Fecha de Apertura</th>
+                <th>Monto Actual</th> 
+		<th>Moneda</th>
+                <th>Fecha de Cancelacion</th>                                                     
             </tr>
 	</thead>
 	<tbody>
-            {% for caja in cajas %}
+            {% for cuentaBancaria in cuentasBancarias %}
             <tr>
-                <td>{{ caja.nCaja }}</td>
-                <td>{{ caja.denominacion }}</td>
-                <td>{{ caja.fCreacion|	date("d/m/Y")}}</td>
-                <td>{{ caja.abierto }}</td>                
+               <td>{{ cuentaBancaria.nCuenta }}</td>
+                <td>{{ cuentaBancaria.banco }}</td>
+                <td>{{ cuentaBancaria.fApertura|date("d/m/Y") }}</td>
+                <td>{{ cuentaBancaria.mActual }}</td> 
+                <td>{{ cuentaBancaria.moneda }}</td> 
+                <td>{{ cuentaBancaria.fCancelacion|date("d/m/Y")  }}</td>                
             </tr>
             {% endfor %}		
 	</tbody>

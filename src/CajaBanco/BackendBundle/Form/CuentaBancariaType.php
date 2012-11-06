@@ -4,26 +4,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BancoType extends AbstractType
+class CuentaBancariaType extends AbstractType
 {   
     public function buildForm(FormBuilderInterface $builder, array $options)
     {    
-        $builder->add('nombre')
-                ->add('ruc')
-                ->add('direccion')
-                ->add('ciudad')
-                ->add('telefono')
-                ->add('email')                
+        $builder->add('nCuenta')
+                ->add('banco')
+                ->add('fApertura','datetime', array('widget' => 'single_text',))
+                ->add('mActual')
+                ->add('moneda')
+                ->add('fCancelacion', 'datetime', array('widget' => 'single_text',))                
         ;
     }    
     public function getName()
     {
-        return 'banco_form';
+        return 'ctabancaria_form';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CajaBanco\BackendBundle\Entity\Banco',
+            'data_class' => 'CajaBanco\BackendBundle\Entity\CuentaBancaria',
         ));
     }
     
