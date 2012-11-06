@@ -25,12 +25,6 @@ conceptoCaja_listar:
 conceptoCaja_verTodos:
     pattern:  /backend/conceptoCaja/verTodos
     defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:verTodos } 
-    
-caja_insertar:
-    pattern: /backend/caja/insertar
-    defaults: { _controller: CajaBancoBackendBundle:Caja:insertar }
-    requirements:
-        _method:  GET|POST
 
 caja_insertar:
     pattern: /backend/caja/insertar
@@ -56,4 +50,26 @@ caja_verTodos:
     pattern:  /backend/caja/verTodos
     defaults: { _controller: CajaBancoBackendBundle:Caja:verTodos } 
  
+banco_insertar:
+    pattern: /backend/banco/insertar
+    defaults: { _controller: CajaBancoBackendBundle:Banco:insertar }
+    requirements:
+        _method:  GET|POST
+
+banco_editar:
+    pattern: /backend/banco/editar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:Banco:editar }
+    requirements:
+        _method:  GET|POST
+        
+banco_borrar:
+    pattern:  /backend/banco/borrar/{id}
+    defaults: { _controller: CajaBancoBackendBundle:Banco:borrar }         
+ 
+banco_listar:
+    pattern: /backend/banco/listar
+    defaults: { _controller: CajaBancoBackendBundle:Banco:listar }    
     
+banco_verTodos:
+    pattern:  /backend/banco/verTodos
+    defaults: { _controller: CajaBancoBackendBundle:Banco:verTodos }     

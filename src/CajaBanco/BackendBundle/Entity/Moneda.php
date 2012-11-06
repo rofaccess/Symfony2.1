@@ -95,11 +95,14 @@ class Moneda
     //###########################################################################
     /**
     * @ORM\OneToMany(targetEntity="CajaDetalle", mappedBy="moneda")
+    *  @ORM\OneToMany(targetEntity="CuentaBancaria", mappedBy="moneda")
     */
     protected $cajaDetalles;
+    protected $cuentasBancarias;
     public function __construct()
     {
         $this->cajaDetalles = new ArrayCollection();
+        $this->cuentasBancarias = new ArrayCollection();
     }
     public function addCajaDetalles(\CajaBanco\BackendBundle\Entity\CajaDetalle $cajaDetalles)
     {
@@ -111,5 +114,17 @@ class Moneda
     }    
     public function __toString() {
         return $this->getCajaDetalles();
+        return $this->getCuentasBancarias();
     }
+    ////////////////////////////////////////////////////////////////////////////
+      
+    public function addCuentasBancarias(\CajaBanco\BackendBundle\Entity\CuentaBancaria $cuentasBancarias)
+    {
+        $this->cuentasBancarias[] = $cuentasBancarias;
+    }
+    public function getCuentasBancarias()
+    {
+        return $this->getDescripcion();
+    }    
+    
 }

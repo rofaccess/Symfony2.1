@@ -125,7 +125,7 @@ class CajaDetalle
      */
     public function setFCierre($fCierre)
     {
-        $this->nivel = $fCierre;
+        $this->fCierre = $fCierre;
     
         return $this;
     }
