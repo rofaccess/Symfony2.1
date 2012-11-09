@@ -1,13 +1,15 @@
 index:
     pattern:  /backend
     defaults: { _controller: CajaBancoBackendBundle:Page:index }    
-    
+conceptoCaja_main:
+    pattern: /backend/conceptoCaja/main
+    defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:main}    
 conceptoCaja_insertar:
     pattern: /backend/conceptoCaja/insertar
     defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:insertar }
     requirements:
         _method:  GET|POST
-
+        
 conceptoCaja_editar:
     pattern: /backend/conceptoCaja/editar/{id}
     defaults: { _controller: CajaBancoBackendBundle:ConceptoCaja:editar }
@@ -41,11 +43,12 @@ caja_editar:
 caja_borrar:
     pattern:  /backend/caja/borrar/{id}
     defaults: { _controller: CajaBancoBackendBundle:Caja:borrar }         
- 
+caja_main:
+    pattern:  /backend/caja/main
+    defaults: { _controller: CajaBancoBackendBundle:Caja:main }  
 caja_listar:
     pattern: /backend/caja/listar
-    defaults: { _controller: CajaBancoBackendBundle:Caja:listar }    
-    
+    defaults: { _controller: CajaBancoBackendBundle:Caja:listar }        
 caja_verTodos:
     pattern:  /backend/caja/verTodos
     defaults: { _controller: CajaBancoBackendBundle:Caja:verTodos } 
@@ -73,7 +76,10 @@ banco_listar:
 banco_verTodos:
     pattern:  /backend/banco/verTodos
     defaults: { _controller: CajaBancoBackendBundle:Banco:verTodos }   
-    
+
+banco_main:
+    pattern: /backend/banco/main
+    defaults: { _controller: CajaBancoBackendBundle:Banco:main}      
 ctabancaria_insertar:
     pattern: /backend/ctabancaria/insertar
     defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:insertar }
@@ -96,4 +102,8 @@ ctabancaria_listar:
     
 ctabancaria_verTodos:
     pattern:  /backend/ctabancaria/verTodos
-    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:verTodos }     
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:verTodos }  
+    
+ctabancaria_main:
+    pattern:  /backend/ctabancaria/main
+    defaults: { _controller: CajaBancoBackendBundle:CuentaBancaria:main }      

@@ -11,7 +11,7 @@
                 <th>Fecha de Apertura</th>
                 <th>Monto Actual</th> 
 		<th>Moneda</th>
-                <th>Fecha de Cancelacion</th>                                                     
+                <th>Estado</th>                                                   
             </tr>
 	</thead>
 	<tbody>
@@ -19,10 +19,10 @@
             <tr>
                <td>{{ cuentaBancaria.nCuenta }}</td>
                 <td>{{ cuentaBancaria.banco }}</td>
-                <td>{{ cuentaBancaria.fApertura|date("d/m/Y") }}</td>
+                <td>{{ cuentaBancaria.fApertura|date("d/m/Y H:i") }}</td>
                 <td>{{ cuentaBancaria.mActual }}</td> 
                 <td>{{ cuentaBancaria.moneda }}</td> 
-                <td>{{ cuentaBancaria.fCancelacion|date("d/m/Y")  }}</td>                
+                <td>{{ cuentaBancaria.estado }}</td>                 
             </tr>
             {% endfor %}		
 	</tbody>

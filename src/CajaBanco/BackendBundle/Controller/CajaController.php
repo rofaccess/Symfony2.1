@@ -3,17 +3,19 @@
 namespace CajaBanco\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use CajaBanco\BackendBundle\Form\CajaType;
+use CajaBanco\BackendBundle\Form\CajaSimpleType;
+use CajaBanco\BackendBundle\Form\CajaCompletType;
 use CajaBanco\BackendBundle\Entity\Caja;
 
 class CajaController extends Controller
 {        
     public function insertarAction()
-    {       
-        
-        $caja = new Caja();       
-        $caja->setFCreacion(new \DateTime('now'));
-        $form = $this->createForm(new CajaType(), $caja);
+    {               
+        $caja = new Caja();  
+        date_default_timezone_set('America/Asuncion');
+        $datetime=new \DateTime("now");        
+        $caja->setFCreacion($datetime);
+        $form = $this->createForm(new CajaSimpleType(), $caja);
         
         //-- Obtenemos el request que contendrá los datos
         $request = $this->getRequest();
@@ -35,18 +37,18 @@ class CajaController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.               
-                return $this->redirect($this->generateURL('caja_insertar'));
+                return $this->redirect($this->generateURL('caja_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:Caja:insertar.html.twig', 
                 array('form' => $form->createView(),
         ));    
-    }
+    }    
     public function editarAction($id)
     {  
         $em = $this->getDoctrine()->getEntityManager();
         $caja=$em->getRepository('CajaBancoBackendBundle:Caja')->find($id);        
-        $edit_form = $this->createForm(new CajaType(), $caja);
+        $edit_form = $this->createForm(new CajaCompletType(), $caja);
         
         //-- Obtenemos el request que contendrá los datos
         $request = $this->getRequest();
@@ -71,19 +73,19 @@ class CajaController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.
-                return $this->redirect($this->generateURL('caja_insertar'));
+                return $this->redirect($this->generateURL('caja_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:Caja:editar.html.twig', 
                 array('caja'  => $caja,'edit_form' => $edit_form->createView(),
         ));    
-    }
+    }    
     public function listarAction()
     {       
         $em = $this->getDoctrine()->getEntityManager();
         $cajas	=$em->getRepository('CajaBancoBackendBundle:Caja')->findAll();
         return $this->render('CajaBancoBackendBundle:Caja:listar.html.twig', array('cajas' => $cajas));
-    }
+    }    
     public function verTodosAction()
     {
        $em = $this->getDoctrine()->getEntityManager();
@@ -96,6 +98,10 @@ class CajaController extends Controller
         $caja=$em->getRepository('CajaBancoBackendBundle:Caja')->find($id);
         $em->remove($caja);
         $em->flush();
-        return $this->redirect($this->generateUrl('caja_insertar'));
+        return $this->redirect($this->generateUrl('caja_main'));
+    }
+    public function mainAction()
+    {             
+        return $this->render('CajaBancoBackendBundle:Caja:main.html.twig');
     }
 }

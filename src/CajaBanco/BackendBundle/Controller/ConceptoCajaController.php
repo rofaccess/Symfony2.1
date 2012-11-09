@@ -35,7 +35,7 @@ class ConceptoCajaController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.               
-                return $this->redirect($this->generateURL('conceptoCaja_insertar'));
+                return $this->redirect($this->generateURL('conceptoCaja_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:ConceptoCaja:insertar.html.twig', 
@@ -71,7 +71,7 @@ class ConceptoCajaController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.
-                return $this->redirect($this->generateURL('conceptoCaja_insertar'));
+                return $this->redirect($this->generateURL('conceptoCaja_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:ConceptoCaja:editar.html.twig', 
@@ -96,6 +96,10 @@ class ConceptoCajaController extends Controller
         $conceptoCaja=$em->getRepository('CajaBancoBackendBundle:ConceptoCaja')->find($id);
         $em->remove($conceptoCaja);
         $em->flush();
-        return $this->redirect($this->generateUrl('conceptoCaja_insertar'));
+        return $this->redirect($this->generateUrl('conceptoCaja_main'));
+    }
+    public function mainAction()
+    {             
+        return $this->render('CajaBancoBackendBundle:ConceptoCaja:main.html.twig');
     }
 }

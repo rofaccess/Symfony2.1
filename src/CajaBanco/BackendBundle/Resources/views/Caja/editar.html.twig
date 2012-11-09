@@ -1,50 +1,48 @@
 {% extends 'CajaBancoBackendBundle::base.html.twig' %}
 
-{% block stylesheets %}  
-    {{parent()}} 
-    <link href="{{ asset('css/abm_caja.css') }}" type="text/css" rel="stylesheet" /> 
-    <link href="{{ asset('validationEngine/css/validationEngine.jquery.css') }}" type="text/css" rel="stylesheet" /> 
-    
-{% endblock %}
-    
-{% block content %} 
-     <h3 class="content_title">Cajas</h3>
-     
-     <fieldset>
-    <legend>Editar</legend>
-    <form id="formID" action="{{path('caja_editar',{'id':caja.id})}}" method="post" {{ form_enctype(edit_form) }} class="inline_form">
+{% block content %}    
+    {# Este el el dialogo de edicion #}  
+    <div id="dialog_form" title="Editar Caja"> 
+    <p>Atengase a los requerimientos.</p>    
+    <form id="formID" action="{{path('caja_editar',{'id':caja.id})}}" method="post" {{ form_enctype(edit_form) }} class="formulario">
             {{ form_errors(edit_form) }}   
 
             {{ form_row(edit_form.nCaja, {'label': 'N° de Caja' }) }} 
             {{ form_row(edit_form.denominacion)}} 
             {{ form_row(edit_form.fCreacion, {'label': 'Fecha de Creacion' }) }}
-
-            {{ form_rest(edit_form) }}         
-            <div>
-                <button  type="submit" class="medium blue pill">Guardar</button>        
-                <a href="{{ path('caja_insertar') }}">
-                    <span class="icon large red tooltip" title="Cancelar" style="padding:5px 0px 0px 10px;" data-icon="X"></span>
-                </a>
+            {{ form_row(edit_form.estado2, {'label': 'Estado' })}}            
+            
+            {{ form_row(edit_form._token) }}         
+            <div class="center">
+                <button  type="submit" class="medium inset">Guardar</button> 
+                <a class="button medim inset" href="{{ path('caja_main') }}">Cancelar</a> 
             </div>
         </form>
-    </fieldset>
-    {# Se renderiza el listado llamando al controlador #}   
-    {% render "CajaBancoBackendBundle:Caja:listar" %}
-   
-{% endblock content%}
-    
-{% block javascripts %}
+    </div>     
+{% endblock content %}
+{% block javascripts %}    
     {{parent()}} 
-    <script src="{{ asset('validationEngine/js/jquery.validationEngine.js') }}"></script> 
-    <script src="{{ asset('validationEngine/js/languages/jquery.validationEngine-es.js') }}"></script> 
-    <script>    
-        jQuery(document).ready(function(){
-            $("#caja_form_nCaja").addClass("validate[required,custom[onlyNumberSp]]");
-            //$("#caja_form_fCreacion").addClass("validate[required,custom[date]]"); 
-            $("#caja_form_denominacion").addClass("validate[required]");
-            //$("#caja_form_fCreacion").attr("disabled","disabled");
-            // binds form submission and fields to the validation engine
-            jQuery("#formID").validationEngine('attach');
+    <script type="text/javascript" charset="utf-8">  
+        $(document).ready( function () {
+           //Dialogo de Edicion
+           $( "#dialog_form" ).dialog({
+                autoOpen: true,
+		height: 350,
+		width: 350,
+		modal: true,
+                resizable:false,
+		close: function() {
+                    allFields.val( "" ).dialog("close");
+		}
+            });	
+            $("a.ui-dialog-titlebar-close" ).hide();            
+            //Focus, Validaciones y Seleccion de Fecha
+            $("#caja_form_complet_nCaja").focus();
+            $("#caja_form_complet_nCaja").addClass("validate[required,custom[onlyNumberSp]]");
+            $("#caja_form_complet_denominacion").addClass("validate[required]");
+            $( "#caja_form_complet_fCreacion" ).datetimepicker({dateFormat:'yy/mm/dd',});
+            $("#caja_form_complet_fCreacion").addClass("validate[required,,custom[datetime]]");
+            jQuery("#formID").validationEngine('attach', {promptPosition : "topLeft"});                       
 	});
-    </script>  
+    </script>    
 {% endblock javascripts %}

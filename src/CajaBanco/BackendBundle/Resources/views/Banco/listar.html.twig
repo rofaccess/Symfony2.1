@@ -34,21 +34,18 @@
 
 {% block javascripts %}   
     <script type="text/javascript" charset="utf-8">          
-        $(document).ready( function () {               
-            {# Se establece el formato de la tabla #} 
-            var oTable = $('#listado').dataTable( {
-		"sDom": 'R<"H"lfr>t<"F"ip>',
-		"bJQueryUI": true,
-		"sPaginationType": "full_numbers",               
-                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-                "oLanguage": { "sUrl": "{{ asset('JTable/Lenguajes/spanish.txt') }}" }  
-            } );
-            
-            {# Muestra un anuncio de borrado #}
-            $("a.borrar").click(function(evento){
-                alert("Banco Borrado");                
-            });
-	});
+        $(document).ready( function () {   
+        $('#listado').dataTable( {
+            "sDom": 'R<"H"lfr>t<"F"ip>',
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",               
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "oLanguage": { "sUrl": "{{ asset('JTable/Lenguajes/spanish.txt') }}" }  
+        });
+        $("a.borrar").click(function(){
+            alert("Registro Borrado");                
+        });
+    });
     </script>  
 {% endblock javascripts %}
 

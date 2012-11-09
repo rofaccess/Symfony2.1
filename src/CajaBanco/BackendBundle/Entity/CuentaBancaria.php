@@ -20,12 +20,15 @@ class CuentaBancaria
      *
      * @ORM\Column(name="n_cuenta", type="integer", nullable=false)
      * @ORM\Id
+     * @Assert\NotNull()
+     * @Assert\NotBlank()     
+     * @Assert\MaxLength(10)
      */
     public $nCuenta;
 
     /**     
      * @ORM\ManyToOne(targetEntity="Banco", inversedBy="cuentasBancarias")
-     * @ORM\JoinColumn(name="banco_id", referencedColumnName="id")  
+     * @ORM\JoinColumn(name="banco_id", referencedColumnName="id")      
      */
     
     private $banco;  
@@ -41,6 +44,9 @@ class CuentaBancaria
      * @var float $mActual  
      *
      * @ORM\Column(name="m_actual", type="decimal", precision=10, scale=2, nullable=false)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()     
+     * @Assert\MaxLength(13)
      */
     private $mActual; 
     
@@ -50,12 +56,12 @@ class CuentaBancaria
      */
     protected $moneda;
     
-    /**
-     * @var datetime $fCancelacion
+     /**
+     * @var string $estado
      *
-     * @ORM\Column(name="f_cancelacion", type="datetime", nullable=true)
+     * @ORM\Column(name="estado", type="string", length=8, nullable=false)
      */
-    private $fCancelacion;
+    private $estado="Activo";  //default 0(false) al insertar en la tabla 
     
     /**
      * Get nCuenta
@@ -123,29 +129,29 @@ class CuentaBancaria
     {
         return $this->mActual;
     }
-    
     /**
-     * Set fCancelacion
+     * Set estado
      *
-     * @param datetime $fCancelacion
+     * @param string $estado
      * @return CuentaBancaria
      */
-    public function setFCancelacion($fCancelacion)
+    public function setEstado($estado)
     {
-        $this->fCancelacion = $fCancelacion;
+        $this->estado = $estado;
     
         return $this;
     }
 
     /**
-     * Get fCancelacion
+     * Get estado
      *
-     * @return datetime 
+     * @return string 
      */
-    public function getFCancelacion()
+    public function getEstado()
     {
-        return $this->fCancelacion;
+        return $this->estado;
     }
+    
     /////////////////////////////////////////////////////////////////////////
     public function setMoneda(\CajaBanco\BackendBundle\Entity\Moneda $moneda)
     {

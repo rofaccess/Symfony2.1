@@ -1,0 +1,46 @@
+{% extends 'CajaBancoBackendBundle::base.html.twig' %}
+
+{% block content %}    
+    {# Renderizo el formulario de insercion dentro de este div#}    
+    <div id="dialog-form" title="Agregar Caja">
+        <p>Atengase a los requerimientos.</p>  
+        {% render "CajaBancoBackendBundle:Caja:insertar"%}   
+    </div> 
+    
+    {# Titulo #}
+    <h3 class="content_title">Cajas</h3> 
+    
+    {# Al clickear aparece el formulario de insercion #}
+    <button  id="agregar" class="medium inset">
+        <span class="icon medium blue" data-icon="p"></span>Agregar
+    </button> 
+    
+    {# Renderizo la lista de Cajas#}
+    {% render "CajaBancoBackendBundle:Caja:listar"%}    
+{% endblock content %}
+{% block javascripts %}    
+    {{parent()}} 
+    <script type="text/javascript" charset="utf-8">          
+        $(document).ready( function () {               
+           $( "#dialog-form" ).dialog({
+                autoOpen: false,
+		height: 300,
+		width: 350,
+		modal: true,
+                resizable:false,
+		close: function() {
+                    allFields.val( "" ).removeClass( "ui-state-error" );
+		}
+            });			
+            $("#agregar" ).click(function() {
+                $( "#dialog-form" ).dialog( "open" );
+            });
+            $("#cancelar" ).click(function(event) {
+                event.preventDefault();
+                $( "#dialog-form" ).dialog( "close" );
+            });
+	});
+    </script>    
+{% endblock javascripts %}
+
+

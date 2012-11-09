@@ -32,7 +32,7 @@ class BancoController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.               
-                return $this->redirect($this->generateURL('banco_insertar'));
+                return $this->redirect($this->generateURL('banco_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:Banco:insertar.html.twig', 
@@ -68,7 +68,7 @@ class BancoController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.
-                return $this->redirect($this->generateURL('banco_insertar'));
+                return $this->redirect($this->generateURL('banco_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:Banco:editar.html.twig', 
@@ -93,6 +93,10 @@ class BancoController extends Controller
         $banco=$em->getRepository('CajaBancoBackendBundle:Banco')->find($id);
         $em->remove($banco);
         $em->flush();
-        return $this->redirect($this->generateUrl('banco_insertar'));
+        return $this->redirect($this->generateUrl('banco_main'));
+    }
+    public function mainAction()
+    {             
+        return $this->render('CajaBancoBackendBundle:Banco:main.html.twig');
     }
 }

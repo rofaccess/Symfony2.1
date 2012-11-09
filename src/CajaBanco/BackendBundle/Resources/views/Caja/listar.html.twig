@@ -6,7 +6,8 @@
                 <th>N° de Caja</th>
 		<th>Denominacion</th>
                 <th>Fecha de Creacion</th>
-		<th>Esta Abierto?</th>
+		<th>Estado</th>
+                <th>Estado</th>
                 <th>Acciones</th>                        
             </tr>
 	</thead>
@@ -15,8 +16,9 @@
             <tr>
                 <td>{{ caja.nCaja }}</td>
                 <td>{{ caja.denominacion }}</td>
-                <td>{{ caja.fCreacion|	date("d/m/Y") }}</td>
-                <td>{{ caja.abierto }}</td> 
+                <td>{{ caja.fCreacion|	date("d/m/Y H:i") }}</td>
+                <td>{{ caja.estado1 }}</td> 
+                <td>{{ caja.estado2 }}</td> 
                 <td class="center">
                     <a href="{{	path('caja_editar',{'id':caja.id})}}"><span class="icon gray tooltip-left" title="Editar" data-icon="7"></span></a> 
                     <a style="padding-left:20px;"class="borrar" href="{{path('caja_borrar',{'id':caja.id})}}"><span class="icon gray tooltip-right" title="Borrar" data-icon="T"></span></a>
@@ -28,23 +30,21 @@
     </div>        
 {% endblock content %}
 
-{% block javascripts %}   
-    <script type="text/javascript" charset="utf-8">          
-        $(document).ready( function () {               
-            {# Se establece el formato de la tabla #} 
-            var oTable = $('#listado').dataTable( {
-		"sDom": 'R<"H"lfr>t<"F"ip>',
-		"bJQueryUI": true,
-		"sPaginationType": "full_numbers",               
-                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-                "oLanguage": { "sUrl": "{{ asset('JTable/Lenguajes/spanish.txt') }}" }  
-            } );
-            
-            {# Muestra un anuncio de borrado #}
-            $("a.borrar").click(function(evento){
-                alert("Caja Borrado");                
-            });
-	});
-    </script>  
+{% block javascripts %}    
+    <script>
+    $(document).ready( function () {   
+        $('#listado').dataTable( {
+            "sDom": 'R<"H"lfr>t<"F"ip>',
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",               
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "oLanguage": { "sUrl": "{{ asset('JTable/Lenguajes/spanish.txt') }}" }  
+        });
+        $("a.borrar").click(function(){
+            alert("Registro Borrado");                
+        });
+    });
+    </script>
 {% endblock javascripts %}
+
 

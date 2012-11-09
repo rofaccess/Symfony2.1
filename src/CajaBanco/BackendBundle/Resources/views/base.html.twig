@@ -9,24 +9,32 @@
             <link href="{{ asset('css/base.css') }}" type="text/css" rel="stylesheet" /> 
             <link href="{{ asset('css/abm.css') }}" type="text/css" rel="stylesheet" /> 
             {# KICKSTART #}
-            <link href="{{ asset('kickstart/css/kickstart.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('kickstart/css/pretiffy.css') }}" type="text/css" rel="stylesheet" />
-            {# JTABLE #}
+            <link href="{{ asset('kickstart/css/kickstart.css') }}" type="text/css" rel="stylesheet" />           
+            {# DATATABLE #}
             <link href="{{ asset('JTable/css/demo_table_jui.css') }}" type="text/css" rel="stylesheet" />
             <link href="{{ asset('JTable/themes/smoothness/jquery-ui-1.8.4.custom.css') }}" type="text/css" rel="stylesheet" /> 
-            {# Otro tema de tabla
-            <link href="{{ asset('JTable/css/jquery.dataTables_themeroller.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('JTable/themes/ui-lightness/jquery-ui-1.8.4.custom.css') }}" type="text/css" rel="stylesheet" /> 
-            #}
-            {% endblock %}
+            {# VALIDATION Y DATETIMEPICKER #}
+            <link href="{{ asset('validationEngine/css/validationEngine.jquery.css') }}" type="text/css" rel="stylesheet" /> 
+            <link href="{{ asset('css/jquery-ui-timepicker-addon.css') }}" type="text/css" rel="stylesheet" />            
+        {% endblock %}
         
-        {% block javascripts %}   
-            {# KICKSTART #}
+        {% block javascripts %}            
+            {# KICKSTART #} 
             <script type="text/javascript" src="{{ asset('js/jquery-1.8_0.js') }}"></script> 
-            <script src="{{ asset('kickstart/js/kickstart.js') }}"></script> 
-            {# JTABLE #}
-            <script type="text/javascript" src="{{ asset('js/jquery-1.8_0.js') }}"></script> 
-            <script src="{{ asset('JTable/js/jquery.dataTables.js') }}"></script>     
+            <script src="{{ asset('kickstart/js/kickstart.js') }}"></script>            
+            {# DATATABLE #}
+            <script type="text/javascript" src="{{ asset('js/jquery-1.8_0.js') }}"></script>  
+            <script src="{{ asset('JTable/js/jquery.dataTables.js') }}"></script>
+            {# VALIDATION Y DATETIMEPICKER#} 
+            <script src="{{ asset('validationEngine/js/jquery.validationEngine.js') }}"></script> 
+            <script src="{{ asset('validationEngine/js/languages/jquery.validationEngine-es.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.1.custom.js') }}"></script> 
+            <script type="text/javascript" src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script> 
+            <script type="text/javascript" src="{{ asset('js/jquery-ui-timepicker-es.js') }}"></script> 
+            <script type="text/javascript" src="{{ asset('js/jquery.ui.datepicker-es.js') }}"></script>   
+             
+        
+            
         {% endblock javascripts %}   
         {# ICONO #}
         <link rel="shortcut icon" href="{{ asset('Bank.ico') }}" />
@@ -97,13 +105,13 @@
                         </ul> 
                         <li><a href="">Administrar</a>
                         <ul>
-                            <li><a href="{{ path('caja_insertar') }}">Cajas</a></li>
-                            <li><a href="{{ path('banco_insertar') }}">Bancos</a></li>
-                            <li><a href="{{ path('ctabancaria_insertar') }}">Cuentas Bancarias</a>
+                            <li><a href="{{ path('caja_main') }}">Cajas</a></li>
+                            <li><a href="{{ path('banco_main') }}">Bancos</a></li>
+                            <li><a href="{{ path('ctabancaria_main') }}">Cuentas Bancarias</a>
                             <li class="divider"><a href="">Chequeras</a></li> 
                             <li class="divider"><a href="">Conceptos</a>
                             <ul>
-                                <li><a href="{{ path('conceptoCaja_insertar') }}">de Caja</a></li>
+                                <li><a href="{{ path('conceptoCaja_main') }}">de Caja</a></li>
                                 <li><a href="">de Banco</a>                                           
                             </ul>
                             </li>                            

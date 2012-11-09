@@ -4,7 +4,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CuentaBancariaType extends AbstractType
+class CuentaBancariaSimpleType extends AbstractType
 {   
     public function buildForm(FormBuilderInterface $builder, array $options)
     {    
@@ -13,14 +13,13 @@ class CuentaBancariaType extends AbstractType
                 ->add('fApertura','datetime', array('widget' => 'single_text',
                                                     'format'=>'y/MM/dd HH:mm', ))
                 ->add('mActual')
-                ->add('moneda') 
-                ->add('estado','choice', array('choices' => array('Activo' => 'Activo','Inactivo' => 'Inactivo'),))
+                ->add('moneda')                 
                                 
         ;
     }    
     public function getName()
     {
-        return 'ctabancaria_form';
+        return 'ctabancaria_form_simple';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

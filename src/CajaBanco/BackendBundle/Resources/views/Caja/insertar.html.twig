@@ -1,52 +1,31 @@
-{% extends 'CajaBancoBackendBundle::base.html.twig' %}
-
-{% block stylesheets %}  
-    {{parent()}} 
-    <link href="{{ asset('css/abm_caja.css') }}" type="text/css" rel="stylesheet" /> 
-    <link href="{{ asset('validationEngine/css/validationEngine.jquery.css') }}" type="text/css" rel="stylesheet" /> 
-    
-{% endblock %}
-    
-{% block content %} 
-    <h3 class="content_title">Cajas</h3> 
-
-    <fieldset>
-    <legend>Nuevo</legend>
-    <form id="formID" action="{{ path('caja_insertar') }}" method="post" {{ form_enctype(form) }} class="inline_form">
+{% block content %}      
+    <form id="formID" action="{{ path('caja_insertar') }}" method="post" {{ form_enctype(form) }} class="formulario">       
             {{ form_errors(form) }}   
 
             {{ form_row(form.nCaja, {'label': 'N° de Caja' }) }} 
             {{ form_row(form.denominacion)}} 
-            {{ form_row(form.fCreacion, {'label': 'Fecha de Creacion' })}}           
-
-            {{ form_rest(form) }}         
-            <div>
-                <button  type="submit" class="medium blue pill">Insertar</button>        
-                <a href="{{ path('index') }}">
-                    <span class="icon large red tooltip" title="Cancelar" style="padding:5px 0px 0px 10px;" data-icon="X"></span>
-                </a>
+            {{ form_row(form.fCreacion, {'label': 'Fecha de Creacion' })}}          
+            
+             {{ form_rest(form) }}       
+            <div class="center">
+                <button  type="submit" class="medium inset">Guardar</button> 
+                <button id="cancelar" class="medium inset">Cancelar</button> 
             </div>
-        </form>
-    </fieldset>
-    {# Se renderiza el listado llamando al controlador #}   
-    {% render "CajaBancoBackendBundle:Caja:listar"%} 
-   
+           
+</form>  
 {% endblock content%}
     
-{% block javascripts %}
-    {{parent()}} 
-    <script src="{{ asset('validationEngine/js/jquery.validationEngine.js') }}"></script> 
-    <script src="{{ asset('validationEngine/js/languages/jquery.validationEngine-es.js') }}"></script> 
+{% block javascripts %}     
     <script>    
+        //Focus, Validaciones y Seleccion de Fecha
         jQuery(document).ready(function(){
-            $("#caja_form_nCaja").addClass("validate[required,custom[onlyNumberSp]]");
-            //$("#caja_form_fCreacion").addClass("validate[required,custom[date]]"); 
-            $("#caja_form_denominacion").addClass("validate[required]");
-            //$("#caja_form_fCreacion").attr("disabled","disabled");
-            // binds form submission and fields to the validation engine
-            jQuery("#formID").validationEngine('attach');
-	});
-    </script>  
-        
+            $("#caja_form_simple_nCaja").focus();
+            $("#caja_form_simple_nCaja").addClass("validate[required,custom[onlyNumberSp]]");
+            $("#caja_form_simple_denominacion").addClass("validate[required]");
+            $( "#caja_form_simple_fCreacion" ).datetimepicker({dateFormat:'yy/mm/dd',});
+            $("#caja_form_simple_fCreacion").addClass("validate[required,custom[datetime]]");
+            jQuery("#formID").validationEngine('attach', {promptPosition : "topLeft"});            
+	});        
+    </script>        
 {% endblock javascripts%}
 

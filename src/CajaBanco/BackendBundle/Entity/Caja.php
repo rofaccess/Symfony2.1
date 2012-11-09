@@ -51,12 +51,18 @@ class Caja
     private $fCreacion;
 
     /**
-     * @var string $abierto
+     * @var string $estado1
      *
-     * @ORM\Column(name="abierto", type="string", length=2, nullable=false)
+     * @ORM\Column(name="estado1", type="string", length=7, nullable=false)
      */
-    private $abierto ="No";  //default 0(false) al insertar en la tabla     
+    private $estado1 ="Cerrado";  //default 0(false) al insertar en la tabla 
     
+    /**
+     * @var string $estado2
+     *
+     * @ORM\Column(name="estado2", type="string", length=8, nullable=false)
+     */
+    private $estado2 ="Activo";  //default 0(false) al insertar en la tabla
     /**
      * Get id
      *
@@ -137,26 +143,49 @@ class Caja
     }
 
     /**
-     * Set abierto
+     * Set estado1
      *
-     * @param string $abierto
+     * @param string $estado1
      * @return Caja
      */
-    public function setAbierto($abierto)
+    public function setEstado1($estado1)
     {
-        $this->abierto = $abierto;
+        $this->estado1 = $estado1;
     
         return $this;
     }
 
     /**
-     * Get abierto
+     * Get estado1
      *
      * @return string 
      */
-    public function getAbierto()
+    public function getEstado1()
     {
-        return $this->abierto;
+        return $this->estado1;
+    }
+    
+    /**
+     * Set estado2
+     *
+     * @param string $estado2
+     * @return Caja
+     */
+    public function setEstado2($estado2)
+    {
+        $this->estado2 = $estado2;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado2
+     *
+     * @return string 
+     */
+    public function getEstado2()
+    {
+        return $this->estado2;
     }
     
     //###########################################################################

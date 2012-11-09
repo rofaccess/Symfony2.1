@@ -1,15 +1,9 @@
 {% extends 'CajaBancoBackendBundle::base.html.twig' %}
-{% block stylesheets %}  
-    {{parent()}} 
-     <link href="{{ asset('validationEngine/css/validationEngine.jquery.css') }}" type="text/css" rel="stylesheet" /> 
-    
-{% endblock %}
 {% block content %} 
-     <h3 class="content_title">Conceptos de Caja</h3>
-     
-     <fieldset>
-    <legend>Editar</legend>
-    <form id="formID" action="{{path('conceptoCaja_editar',{'id':conceptoCaja.id})}}" method="post" {{ form_enctype(edit_form) }} class="inline_form">
+     {# Este el el dialogo de edicion #}  
+    <div id="dialog_form" title="Editar Banco">
+    <p>Atengase a los requerimientos.</p>  
+    <form id="formID" action="{{path('conceptoCaja_editar',{'id':conceptoCaja.id})}}" method="post" {{ form_enctype(edit_form) }} class="formulario">
             {{ form_errors(edit_form) }}   
 
             {{ form_row(edit_form.descripcion) }}   
@@ -18,28 +12,33 @@
             {{ form_row(edit_form.contracuenta) }}
 
             {{ form_rest(edit_form) }}         
-            <div>
-                <button  type="submit" class="medium blue pill">Guardar</button>        
-                <a href="{{ path('conceptoCaja_insertar') }}">
-                    <span class="icon large red tooltip" title="Cancelar" style="padding:5px 0px 0px 10px;" data-icon="X"></span>
-                </a>
+             <div class="center">
+                <button  type="submit" class="medium inset">Guardar</button> 
+                <a class="button medium inset" href="{{ path('conceptoCaja_main') }}">Cancelar</a> 
             </div>
         </form>
-    </fieldset>
-    {# Se renderiza el listado llamando al controlador #}   
-    {% render "CajaBancoBackendBundle:ConceptoCaja:listar"%}
-   
+    </div>  
 {% endblock content%}
     
 {% block javascripts %}
     {{parent()}} 
-    <script src="{{ asset('validationEngine/js/jquery.validationEngine.js') }}"></script> 
-    <script src="{{ asset('validationEngine/js/languages/jquery.validationEngine-es.js') }}"></script> 
     <script>    
         jQuery(document).ready(function(){
-            $("#conceptoCaja_form_descripcion").addClass("validate[required]");
-            // binds form submission and fields to the validation engine
-            jQuery("#formID").validationEngine('attach');
+            //Dialogo de Edicion
+           $( "#dialog_form" ).dialog({
+                autoOpen: true,
+		height: 350,
+		width: 350,
+		modal: true,
+                resizable:false,
+		close: function() {
+                    allFields.val( "" ).dialog("close");
+		}
+            });	
+            $("a.ui-dialog-titlebar-close" ).hide();  
+             $("#conceptoCaja_form_descripcion").focus();
+            $("#conceptoCaja_form_descripcion").addClass("validate[required]"); 
+            jQuery("#formID").validationEngine('attach', {promptPosition : "topLeft"}); 
 	});
     </script> 
 {% endblock javascripts %}

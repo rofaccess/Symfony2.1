@@ -4,6 +4,7 @@ namespace CajaBanco\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CajaBanco\BackendBundle\Form\CuentaBancariaType;
+use CajaBanco\BackendBundle\Form\CuentaBancariaSimpleType;
 use CajaBanco\BackendBundle\Entity\CuentaBancaria;
 
 class CuentaBancariaController extends Controller
@@ -11,7 +12,7 @@ class CuentaBancariaController extends Controller
     public function insertarAction()
     {            
         $cuentaBancaria = new CuentaBancaria();       
-        $form = $this->createForm(new CuentaBancariaType(), $cuentaBancaria);
+        $form = $this->createForm(new CuentaBancariaSimpleType(), $cuentaBancaria);
         //-- Obtenemos el request que contendrá los datos
         $request = $this->getRequest();
         if($request->getMethod() == 'POST')
@@ -32,7 +33,7 @@ class CuentaBancariaController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.               
-                return $this->redirect($this->generateURL('ctabancaria_insertar'));
+                return $this->redirect($this->generateURL('ctabancaria_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:CuentaBancaria:insertar.html.twig', 
@@ -68,7 +69,7 @@ class CuentaBancariaController extends Controller
                 //   importante realizar una redirección para no tener el
                 //   problema de que al intentar actualizar el navegador
                 //   nos dice que lo datos se deben volver a reenviar.
-                return $this->redirect($this->generateURL('ctabancaria_insertar'));
+                return $this->redirect($this->generateURL('ctabancaria_main'));
             }
         }
         return $this->render('CajaBancoBackendBundle:CuentaBancaria:editar.html.twig', 
@@ -93,6 +94,10 @@ class CuentaBancariaController extends Controller
         $cuentaBancaria=$em->getRepository('CajaBancoBackendBundle:CuentaBancaria')->find($id);
         $em->remove($cuentaBancaria);
         $em->flush();
-        return $this->redirect($this->generateUrl('ctabancaria_insertar'));
+        return $this->redirect($this->generateUrl('ctabancaria_main'));
+    }
+    public function mainAction()
+    {             
+        return $this->render('CajaBancoBackendBundle:CuentaBancaria:main.html.twig');
     }
 }
